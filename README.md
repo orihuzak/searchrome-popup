@@ -1,1 +1,3 @@
-# A template for chrome extension using react, typescript, webpack
+# A Chrome extension to fuzzy search tabs, history and bookmarks
+
+## install

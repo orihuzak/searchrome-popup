@@ -1,8 +1,8 @@
 {
-  "name": "template-react-typescript-webpack-chrome-extension",
+  "name": "searchrome-popup",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "",
+  "description": "You can fuzzy search tabs, history and bookmarks",
   "scripts": {
     "build": "webpack --mode=production --config webpack.config.js",
     "dev": "webpack --mode=development --config webpack.config.js",
