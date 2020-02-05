@@ -1,0 +1,16 @@
+{
+  "name": "chrome extension template",
+  "description": "fuzzy search tabs, history and bookmarks",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "history",
+    "bookmarks"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
