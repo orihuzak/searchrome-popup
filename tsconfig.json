@@ -4,8 +4,8 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "rootDir": "src",
-    "outDir": "dist/js",
-    "sourceMap": true,
+    "outDir": "./dist/js/",
+    // "sourceMap": true,
     "jsx": "react",
     "lib": [
       "es2015",

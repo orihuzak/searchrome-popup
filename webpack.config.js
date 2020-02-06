@@ -35,12 +35,17 @@ const config = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
+  },
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
   }
 }
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
-    config.devtool = 'inline-source-map'
+    // config.devtool = 'inline-source-map'
+    config.devtool = 'cheap-module-source-map' // chrome-extension用
   } else if (argv.mode === 'production' ) {
 
   }
