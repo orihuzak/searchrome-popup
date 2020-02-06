@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "module": "ESNEXT",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "rootDir": "src",
     "outDir": "dist/js",
