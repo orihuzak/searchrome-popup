@@ -2,8 +2,8 @@ const path = require("path");
 
 const config = {
   entry: {
-    popup: path.join(__dirname, "src/popup.tsx"),
-    background: path.join(__dirname, "src/background.ts")
+    popup: path.join(__dirname, "src/popup.jsx"),
+    background: path.join(__dirname, "src/background.js")
   },
   output: {
     path: path.join(__dirname, "dist/js"),
@@ -12,9 +12,18 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.js[x]?$/,
         exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: "ts-loader"
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react'
+            ],
+          plugins: ['@babel/plugin-syntax-jsx'] // jsxパース用
+          },
+        }
       },
       {
         exclude: /node_modules/,
@@ -34,7 +43,8 @@ const config = {
     ]
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    // extensions: [".ts", ".tsx", ".js"]
+    extensions: [' ', '.js', '.jsx', 'json'] // 拡張子なしのimportを許可
   }
 }
 
@@ -42,7 +52,7 @@ module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     // config.devtool = 'inline-source-map'
     config.devtool = 'cheap-module-source-map' // chrome-extension用
-  } else if (argv.mode === 'production' ) {
+  } else if (argv.mode === 'production') {
 
   }
   return config

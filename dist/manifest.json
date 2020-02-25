@@ -7,13 +7,13 @@
     "activeTab",
     "tabs",
     "history",
-    "bookmarks"
+    "bookmarks",
+    "storage"
   ],
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false
   },
   "browser_action": {
-    "default_popup": "popup.html"
   }
 }
