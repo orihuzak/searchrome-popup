@@ -5,6 +5,7 @@ import Suggests from "./suggests"
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.timeoutID
     this.state = {
       query: "",
       suggests: []
@@ -13,9 +14,11 @@ export default class Search extends React.Component {
   }
 
   handleQueryChange(query) {
+    clearTimeout(this.timeoutID)
     this.setState({
       query: query
     });
+    this.timeoutID = setTimeout(this.search.bind(this), 300) // 0.3sディレイをつける
   }
 
   updateSuggests(suggests) {
@@ -26,17 +29,14 @@ export default class Search extends React.Component {
   }
 
   componentDidMount() {
-    this.showTabsHistory()
+    this.search()
+    // this.showTabsHistory()
   }
 
-  showTabsHistory() {
-    // send message
-    chrome.runtime.sendMessage({ tabsHistory: true }, (res) => {
-      this.updateSuggests(res.tabsHistory)
+  search() {
+    chrome.runtime.sendMessage({ query: this.state.query }, res => {
+      this.updateSuggests(res.suggests)
     })
-    // chrome.storage.local.get("tab", (result) => {
-    //   this.updateSuggests(result.tab)
-    // })
   }
 
   render() {

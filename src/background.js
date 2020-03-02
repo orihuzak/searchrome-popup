@@ -98,17 +98,13 @@ chrome.browserAction.onClicked.addListener(tab => {
   log("initialize completed")
 })
 
-////////////////////////////////////////////////////////////////////////////////
-// popupからのメッセージを受信し、返信
-////////////////////////////////////////////////////////////////////////////////
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  // tabsを返信
-  if (message.tabsHistory) {
-    sendResponse({ tabsHistory: tabsHistory })
-  }
-  // 検索して結果を返信
-  if (message.searchWord) {
-    sendResponse({ searchResult: fuse.search(message.searchWord) })
+  if(message.query === "") {
+    // queryが""ならタブと履歴のリストを返す
+    sendResponse({ suggests: tabsHistory })
+  } else {
+    sendResponse({ suggests: fuse.search(message.query) })
   }
 })
 
@@ -116,3 +112,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 getTabs()
 getHistory()
 getBookmarks()
+
