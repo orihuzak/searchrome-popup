@@ -30,7 +30,6 @@ export default class Search extends React.Component {
 
   componentDidMount() {
     this.search()
-    // this.showTabsHistory()
   }
 
   search() {

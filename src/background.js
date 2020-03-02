@@ -86,7 +86,6 @@ chrome.bookmarks.onImportEnded.addListener(() => {
   getBookmarks()
 })
 
-// extensionボタンが押されたらcontent scriptsにメッセージ
 chrome.browserAction.onClicked.addListener(tab => {
   // extension iconがクリックされたらpopupを表示
   chrome.browserAction.setPopup({ popup: "popup.html" })
