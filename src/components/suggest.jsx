@@ -3,18 +3,19 @@ import * as React from "react";
 export default class Suggest extends React.Component {
   constructor(props) {
     super(props)
-    this.openUrl = this.openUrl.bind(this);
+    this.handleClicked = this.handleClicked.bind(this);
   }
 
-  openUrl() {
+  handleClicked() {
     const sgt = this.props.suggest
     // タブならアクティブにする
     if(sgt.hasOwnProperty("active")) {
       chrome.tabs.update(sgt.id, { active: true }, tab => {
         // 異なるwindowのタブならpopupを非表示する
-        chrome.extension.getViews({type: "popup"}).forEach((win) => {
-          if(win === window) win.close();
-        });
+        window.close()
+        // chrome.extension.getViews({type: "popup"}).forEach((win) => {
+        //   if(win === window) win.close();
+        // });
         chrome.windows.update(tab.windowId, { focused: true })
       })
     } else {
@@ -28,15 +29,15 @@ export default class Suggest extends React.Component {
   }
 
   render() {
-    const suggest = this.props.suggest
+    const sgt = this.props.suggest
     return (
-      <div className="suggest" onClick={this.openUrl}>
+      <div className="suggest" onClick={this.handleClicked}>
         <div className="icon-wrapper">
           <img src="" alt="" className="icon"/>
         </div>
         <div>
-          <div className="title">{suggest.title}</div>
-          <div className="url">{suggest.url}</div>
+          <div className="title">{sgt.title}</div>
+          <div className="url">{sgt.url}</div>
         </div>
       </div>
     )
